@@ -59,6 +59,22 @@ def toggle_bonus_cereal_showing():
         bonus_cereal_showing = False
     else:
         bonus_cereal_showing = True
+        
+def toggle_poison_active():
+    global poison_activated
+    global poison_activation_time
+    if poison_activated == True:
+        poison_activated = False
+    else:
+        poison_activated = True
+    poison_activation_time = int(time.time())
+
+def toggle_poison_showing():
+    global poison_showing
+    if poison_showing == True:
+        poison_showing = False
+    else:
+        poison_showing = True        
 # Write score
 def write_score(score, high_score):
     pen.goto(0, 260)
@@ -91,6 +107,11 @@ bonus_cereal_showing = False
 bonus_cereal_spawn_time = 0
 bonus_cereal_activation_time = 0
 bonus_cereal_elapsed_time = 0
+poison_activated = False
+poison_showing = False
+poison_spawn_time = 0
+poison_activation_time = 0
+poison_elapsed_time = 0
 
 #Screen setup
 
@@ -113,7 +134,6 @@ head.goto(0,0)
 head.direction='stop'
 
 # Snake food
-
 food = t.Turtle()
 food.speed(0)
 w.addshape('cake.gif')
@@ -131,6 +151,15 @@ bonus.shape('icecream.gif')
 bonus.color("red")
 bonus.penup()
 bonus.goto(1000,1000)
+
+# Poison
+poison = t.Turtle()
+poison.speed(0)
+w.addshape('poison.gif')
+poison.shape('poison.gif')
+poison.color("red")
+poison.penup()
+poison.goto(1000,1000)
 
 segments= []
 
@@ -251,11 +280,21 @@ while running:
     
     # Spawn bonus cereal
     if game_elapsed_time % 30 == 0 and game_started and game_elapsed_time > 1:
+        toggle_bonus_cereal_showing()
         if bonus_cereal_showing is False:
             x = random.randrange(-280, 280,20)
             y = random.randrange(-280, 280,20)
             bonus.goto(x,y)        
             bonus_cereal_spawn_time = time.time()
+            
+    # Spawn poison
+    if game_elapsed_time % 50 == 0 and game_started and game_elapsed_time > 1:
+        toggle_poison_showing()
+        if poison_showing is False:
+            x = random.randrange(-280, 280,20)
+            y = random.randrange(-280, 280,20)
+            poison.goto(x,y)        
+            poison_spawn_time = time.time()         
             
         
     # Check for a collision with the bonus cereal
@@ -270,7 +309,30 @@ while running:
             pen.write("Score: {}    High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
     
   
-            
+      # Check for a collision with the bonus cereal
+    if head.distance(poison) < 20:
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction = "stop"
+        x = random.randrange(-280, 280,20)
+        y = random.randrange(-280, 280,20)
+        food.goto(x,y)
+        bonus.goto(1000,1000)
+        bonus.goto(1000,1000)
+        bonus_cereal_activated = False
+        bonus_cereal_showing = False
+        # Hide the segments
+        for segment in segments:
+            segment.goto(1000, 1000)
+        
+        # Clear the segments list
+        segments.clear()
+        
+        # Reset the score
+        score = 0
+        
+        # Reset the delay
+        delay = 0.1
    
     
               
@@ -305,6 +367,22 @@ while running:
         if bonus_cereal_elapsed_time >= 5:
             bonus.goto(2000,2000)
         toggle_bonus_cereal_active()
+        
+        
+    # Hide poison
+    poison_elapsed_time= int(time.time()-poison_spawn_time)
+    
+    print(poison_elapsed_time)
+    
+    if poison_elapsed_time == 5:
+                toggle_poison_showing()
+                poison.goto(2000, 2000)
+
+    if poison_activated:
+        poison_elapsed_time = int(time.time())
+        if poison_elapsed_time >= 5:
+            poison.goto(2000,2000)
+        toggle_poison_active()    
     
                     
         
