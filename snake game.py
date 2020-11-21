@@ -118,7 +118,7 @@ poison_elapsed_time = 0
 w= t.Screen()
 w.title('Snake Game')
 #w.bgcolor("Chartreuse")
-w.bgpic('grass.gif')
+w.bgpic('bg.gif')
 w.setup(width=600, height=600)
 w.tracer(0) #turns off animation on screen
 
@@ -146,8 +146,8 @@ food.goto(0,100)
 # Snake bonus food
 bonus = t.Turtle()
 bonus.speed(0)
-w.addshape('icecream.gif')
-bonus.shape('icecream.gif')
+w.addshape('pancake.gif')
+bonus.shape('pancake.gif')
 bonus.color("red")
 bonus.penup()
 bonus.goto(1000,1000)
@@ -213,7 +213,7 @@ while running:
         head.direction = "stop"
         x = random.randrange(-280, 280,20)
         y = random.randrange(-280, 280,20)
-        #food.goto(x,y)
+        food.goto(x,y)
         bonus.goto(1000,1000)
         bonus_cereal_activated = False
         bonus_cereal_showing = False
@@ -288,7 +288,7 @@ while running:
             bonus_cereal_spawn_time = time.time()
             
     # Spawn poison
-    if game_elapsed_time % 50 == 0 and game_started and game_elapsed_time > 1:
+    if game_elapsed_time % 10 == 0 and game_started and game_elapsed_time > 1:
         toggle_poison_showing()
         if poison_showing is False:
             x = random.randrange(-280, 280,20)
@@ -309,30 +309,17 @@ while running:
             pen.write("Score: {}    High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
     
   
-      # Check for a collision with the bonus cereal
+      # Check for a collision with poison
     if head.distance(poison) < 20:
-        time.sleep(1)
-        head.goto(0,0)
-        head.direction = "stop"
-        x = random.randrange(-280, 280,20)
-        y = random.randrange(-280, 280,20)
-        food.goto(x,y)
-        bonus.goto(1000,1000)
-        bonus.goto(1000,1000)
-        bonus_cereal_activated = False
-        bonus_cereal_showing = False
-        # Hide the segments
-        for segment in segments:
-            segment.goto(1000, 1000)
-        
-        # Clear the segments list
-        segments.clear()
-        
-        # Reset the score
-        score = 0
-        
-        # Reset the delay
-        delay = 0.1
+            poison.goto(2000, 2000)
+            toggle_poison_active()
+            toggle_poison_showing()
+            score -= 50
+            if score > high_score:
+                high_score = score
+            pen.clear()
+            pen.write("Score: {}    High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
+    
    
     
               
