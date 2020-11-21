@@ -288,7 +288,7 @@ while running:
             bonus_cereal_spawn_time = time.time()
             
     # Spawn poison
-    if game_elapsed_time % 10 == 0 and game_started and game_elapsed_time > 1:
+    if game_elapsed_time % 50 == 0 and game_started and game_elapsed_time > 1:
         toggle_poison_showing()
         if poison_showing is False:
             x = random.randrange(-280, 280,20)
