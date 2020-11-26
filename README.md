@@ -27,7 +27,7 @@ He gulped down tons of food in a go.
 ### How to play
 
 - Press arrow keys or a,s,d,e keys to move No-face in the desired direction.
-- Try to eat all the pasters visible on screen to earn 10 points.
+- Try to eat all the pastries visible on screen to earn 10 points.
 - After every 30 seconds, a bonus cereal appears for 5 seconds. Eating this helps you earn 30 points extra.
 - Beaware of poison that appears at any random position after every 50 seconds. Eat this and you lose 50 points.
 - Make sure not to touch the boundaries or your own body with your head. Game is over if you do so.
