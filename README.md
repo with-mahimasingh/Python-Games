@@ -2,7 +2,7 @@
 
 # Introduction
 
-> This repository contains all the games that I've built using Python 3.6 and its libraries (Turtle).
+> This repository contains all the games that I've built using Python 3.6 and its libraries (Turtle, pyGame).
 
 **Language Used**
 
