@@ -19,8 +19,8 @@
 
 - It is a simple snake game with a theme inspired by 'No-Face' from Spirited Away.
 - Turtle is used for this game.
-- We are all aware how after consuming a greedy toad, No-Face only sought to consume as much food as possible.
-He gulped down tons of food in a go.
+- We are all aware of how after consuming a greedy toad, No-Face only sought to consume as much food as possible.
+He gulped down tons of food in a go. No-face does the same here! Help him grab as many snacks as possible but BEWARE of the poison.
 
 ![No face](https://user-images.githubusercontent.com/58841158/99882876-86c19380-2c49-11eb-89db-f800bee065eb.gif)
 
